@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class ForecastScreen extends StatefulWidget {
@@ -22,20 +23,22 @@ class _ForecastScreenState extends State<ForecastScreen> {
       body: Column(
         children: [
           buildWeatherInfo(),
-          Container(
-            width: 600,
-            height: 100,
-            child: ListView.builder(
-              itemCount: temps.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return Container(
-                  child: Text(temps[index]),
-                  height: 80,
-                  width: 60,
-                  color: Colors.white,
-                );
-              },
+          Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: Container(
+              width: 600,
+              height: 60,
+              child: ListView.builder(
+                itemCount: temps.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Container(
+                    child: Text(temps[index], style: TextStyle(color: Colors.white)),
+                    height: 80,
+                    width: 60,
+                  );
+                },
+              ),
             ),
           )
         ],
