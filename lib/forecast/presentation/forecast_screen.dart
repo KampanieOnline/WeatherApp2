@@ -1,9 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:weather_app/forecast/presentation/weather_icons_info.dart';
+import 'package:weather_app/forecast/presentation/weather_state.dart';
 
 class ForecastScreen extends StatefulWidget {
-  const ForecastScreen({Key? key, required Color backgroundColor})
-      : super(key: key);
+  const ForecastScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ForecastScreen> createState() => _ForecastScreenState();
@@ -33,7 +36,8 @@ class _ForecastScreenState extends State<ForecastScreen> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Container(
-                    child: Text(temps[index], style: TextStyle(color: Colors.white)),
+                    child: Text(temps[index],
+                        style: TextStyle(color: Colors.white)),
                     height: 80,
                     width: 60,
                   );
@@ -93,67 +97,18 @@ class _ForecastScreenState extends State<ForecastScreen> {
               image: AssetImage('images/sun.png'),
             ),
             SizedBox(height: 60.0),
-            Text(
-              ' 21°',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-                fontSize: 90,
-              ),
-            ),
-            Text(
-              'Thunderstorm',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-                fontSize: 35,
-              ),
-            ),
-            Text(
-              'Monday, 17 may',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w200,
-                fontSize: 18,
-              ),
-            ),
+            WeatherState(temp: '21st',),
             SizedBox(height: 10.0),
             Divider(thickness: 1, color: Colors.lightBlueAccent),
             SizedBox(height: 10.0),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: IconButton(
-                      icon: Image.asset("images/windy.png", color: Colors.white,),
-                      tooltip: "Wietrznie",
-                      onPressed: () {},
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: IconButton(
-                      icon: Image.asset("images/sleet.png", color: Colors.white,),
-                      tooltip: "Śnieg z deszczem",
-                      onPressed: () {},
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: IconButton(
-                      icon: Image.asset("images/rain.png", color: Colors.white,),
-                      tooltip: "Deszczowo",
-                      onPressed: () {},
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            WeatherIconsInfo(),
           ],
         ),
       ),
     );
   }
 }
+
+
+
+
