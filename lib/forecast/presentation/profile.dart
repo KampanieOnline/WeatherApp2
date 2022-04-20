@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/forecast/presentation/profile.dart';
+import 'package:weather_app/forecast/presentation/forecast_screen.dart';
 
-class WeatherIconsInfo extends StatelessWidget {
-  const WeatherIconsInfo({
-    Key? key,
-  }) : super(key: key);
+class Profile extends StatelessWidget {
+  const Profile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
+    return Scaffold(
+      body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-            child: IconButton(
-              icon: Image.asset(
-                "images/windy.png",
-                color: Colors.white,
-              ),
-              tooltip: "Wietrznie",
-              onPressed: () {},
+            child: CircleAvatar(
+              radius: 48, // Image radius
+              backgroundImage: NetworkImage('images/Andy.png'),
             ),
           ),
           Padding(
@@ -28,7 +22,7 @@ class WeatherIconsInfo extends StatelessWidget {
             child: IconButton(
               icon: Image.asset(
                 "images/sleet.png",
-                color: Colors.white,
+                color: Colors.black,
               ),
               tooltip: "Śnieg z deszczem",
               onPressed: () {},
@@ -39,7 +33,7 @@ class WeatherIconsInfo extends StatelessWidget {
             child: IconButton(
               icon: Image.asset(
                 "images/rain.png",
-                color: Colors.white,
+                color: Colors.black,
               ),
               tooltip: "Deszczowo",
               onPressed: () {},
@@ -49,15 +43,12 @@ class WeatherIconsInfo extends StatelessWidget {
             padding: const EdgeInsets.only(left: 20.0, right: 20.0),
             child: TextButton(
               style: ButtonStyle(
-                foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () {
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(builder: (context) => Profile()),
-                );
+                Navigator.pop(context);
               },
-              child: Text('Mój profil'),
+              child: Text('Wróć'),
             ),
           ),
         ],

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/forecast/data/models/weather.dart';
 
-class WeatherState extends StatelessWidget {
-  const WeatherState({
-    Key? key, required this.temp,
+class WeatherStateWidget extends StatelessWidget {
+  const WeatherStateWidget({
+    Key? key,
+    required this.weather
   }) : super(key: key);
 
-  final String temp;
+  final Weather weather;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          temp,
+          weather.temp,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w700,
@@ -20,7 +22,7 @@ class WeatherState extends StatelessWidget {
           ),
         ),
         Text(
-          'Thunderstorm',
+          weather.state,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w400,
@@ -28,7 +30,7 @@ class WeatherState extends StatelessWidget {
           ),
         ),
         Text(
-          'Monday, 17 may',
+          weather.day,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w200,
