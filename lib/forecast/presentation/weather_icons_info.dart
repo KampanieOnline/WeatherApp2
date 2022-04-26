@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/forecast/presentation/profile.dart';
 
 class WeatherIconsInfo extends StatelessWidget {
+  final Function() onProfileButtonTap;
+
   const WeatherIconsInfo({
     Key? key,
+    required this.onProfileButtonTap,
   }) : super(key: key);
 
   @override
@@ -51,12 +54,7 @@ class WeatherIconsInfo extends StatelessWidget {
               style: ButtonStyle(
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
               ),
-              onPressed: () {
-                Navigator.pop(
-                  context,
-                  MaterialPageRoute(builder: (context) => Profile()),
-                );
-              },
+              onPressed: onProfileButtonTap,
               child: Text('Mój profil'),
             ),
           ),

@@ -13,6 +13,7 @@ import 'package:weather_app/forecast/data/models/weather.dart';
 import 'package:weather_app/forecast/data/repository/weather_repository_impl.dart';
 import 'package:weather_app/forecast/domain/usecases/get_local_weather_usecase.dart';
 import 'package:weather_app/forecast/domain/usecases/get_weather_usecase.dart';
+import 'package:weather_app/forecast/presentation/profile.dart';
 import 'package:weather_app/forecast/presentation/weather_icons_info.dart';
 import 'package:weather_app/forecast/presentation/weather_state_widget.dart';
 
@@ -29,7 +30,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
   List<String> temps = [
     "1",
     "2",
-    "5",
+    "3",
   ];
 
   Weather? weather;
@@ -191,7 +192,16 @@ class _ForecastScreenState extends State<ForecastScreen> {
             SizedBox(height: 10.0),
             Divider(thickness: 1, color: Colors.lightBlueAccent),
             SizedBox(height: 10.0),
-            WeatherIconsInfo(),
+            WeatherIconsInfo(
+              onProfileButtonTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Profile(),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
