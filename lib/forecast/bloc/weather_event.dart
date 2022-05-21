@@ -7,3 +7,7 @@ class GetWeatherEvent extends BaseEvent {
 class GetLocalWeatherEvent extends BaseEvent {
   GetLocalWeatherEvent() : super([]);
 }
+
+class GetTemproraryWeatherEvent extends BaseEvent {
+  GetTemproraryWeatherEvent() : super([]);
+}

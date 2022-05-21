@@ -17,10 +17,11 @@ class _$ApiService extends ApiService {
   final definitionType = ApiService;
 
   @override
-  Future<Response<Weather>> getWeather(String location) {
-    final $url = 'linkDoStrony.com';
+  Future<Response<WeatherData>> getWeather(String location) {
+    final $url =
+        'https://api.openweathermap.org/data/2.5/weather?lat=52&lon=21&units=metric&appid=4a25591994dbbcc451b1e6d3b05bf37f';
     final $params = <String, dynamic>{'location': location};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client.send<Weather, Weather>($request);
+    return client.send<WeatherData, WeatherData>($request);
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/common/di/di.dart';
 import 'package:weather_app/common/models/base_state.dart';
 import 'package:weather_app/common/models/error_state.dart';
 import 'package:weather_app/forecast/bloc/weather_bloc.dart';
@@ -9,7 +10,7 @@ import 'package:weather_app/forecast/bloc/weather_state.dart';
 import 'package:weather_app/forecast/data/datasources/local/weather_local_data_source.dart';
 import 'package:weather_app/forecast/data/datasources/local/weather_local_data_source_impl.dart';
 import 'package:weather_app/forecast/data/datasources/remote/weather_remote_data_source_impl.dart';
-import 'package:weather_app/forecast/data/models/weather.dart';
+import 'package:weather_app/forecast/data/models/weather_data.dart';
 import 'package:weather_app/forecast/data/repository/weather_repository_impl.dart';
 import 'package:weather_app/forecast/domain/usecases/get_local_weather_usecase.dart';
 import 'package:weather_app/forecast/domain/usecases/get_weather_usecase.dart';
@@ -33,7 +34,7 @@ class _ForecastScreenState extends State<ForecastScreen> {
     "3",
   ];
 
-  Weather? weather;
+  WeatherData? weather;
   bool isLoading = false;
   bool isError = false;
 
@@ -41,22 +42,9 @@ class _ForecastScreenState extends State<ForecastScreen> {
 
   @override
   void initState() {
-    bloc = WeatherBloc(
-      GetWeatherUsecase(
-        WeatherRepositoryImpl(
-          WeatherRemoteDataSourceImpl(),
-          WeatherLocalDataSourceImpl(),
-        ),
-      ),
-      GetLocalWeatherUsecase(
-        WeatherRepositoryImpl(
-          WeatherRemoteDataSourceImpl(),
-          WeatherLocalDataSourceImpl(),
-        ),
-      ),
-    );
-    // bloc.add(GetWeatherEvent());
-    bloc.add(GetLocalWeatherEvent());
+    bloc = serviceLocator();
+    /*bloc.add(GetWeatherEvent());*/
+    //bloc.add(GetLocalWeatherEvent());
     super.initState();
   }
 
@@ -112,12 +100,21 @@ class _ForecastScreenState extends State<ForecastScreen> {
   Column buildContent() {
     return Column(
       children: [
+        MaterialButton(
+          minWidth: 100,
+          height: 20,
+          color: Colors.white,
+          child: Text('klik'),
+          onPressed: () => bloc.add(
+            GetWeatherEvent(),
+          ),
+        ),
         buildWeatherInfo(),
         Padding(
           padding: const EdgeInsets.all(40.0),
           child: Container(
             width: 600,
-            height: 60,
+            height: 5,
             child: ListView.builder(
               itemCount: temps.length,
               scrollDirection: Axis.horizontal,

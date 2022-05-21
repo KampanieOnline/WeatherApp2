@@ -39,7 +39,6 @@ class JsonToTypeConverter extends JsonConverter {
           .map((item) => jsonParser(item as Map<String, dynamic>) as InnerType)
           .toList() as T;
     }
-
-    throw jsonMap['code'];
+    return jsonMap;
   }
 }

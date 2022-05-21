@@ -1,7 +1,7 @@
-import 'package:weather_app/forecast/data/models/weather.dart';
+import 'package:weather_app/forecast/data/models/weather_data.dart';
 
 abstract class WeatherLocalDataSource {
-  void cacheWeather(Weather weather);
+  void cacheWeather(WeatherData weather);
 
-  Weather getWeather();
+  WeatherData getWeather();
 }

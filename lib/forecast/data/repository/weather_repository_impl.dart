@@ -4,7 +4,7 @@ import 'package:weather_app/forecast/data/datasources/local/weather_local_data_s
 import 'package:weather_app/forecast/data/datasources/remote/weather_remote_data_source.dart';
 import 'package:weather_app/forecast/data/models/failure.dart';
 import 'package:weather_app/forecast/data/models/server_failure.dart';
-import 'package:weather_app/forecast/data/models/weather.dart';
+import 'package:weather_app/forecast/data/models/weather_data.dart';
 import 'package:weather_app/forecast/domain/repository/weather_repository.dart';
 
 class WeatherRepositoryImpl extends WeatherRepository {
@@ -15,7 +15,7 @@ class WeatherRepositoryImpl extends WeatherRepository {
   final WeatherLocalDataSource weatherLocalDataSource;
 
   @override
-  Future<Either<Failure, Weather>> fetchWeather() async {
+  Future<Either<Failure, WeatherData>> fetchWeather() async {
     try {
       final response = await weatherRemoteDataSource.fetchWeather();
       weatherLocalDataSource.cacheWeather(response);
@@ -25,9 +25,20 @@ class WeatherRepositoryImpl extends WeatherRepository {
     }
   }
 
+
   @override
-  Weather getLocalWeather() {
+  WeatherData getLocalWeather() {
     final response = weatherLocalDataSource.getWeather();
     return response;
+  }
+
+  @override
+  Future<Either<Failure, WeatherData>> fetchTemproraryWeather() async {
+    try {
+      final response = await weatherRemoteDataSource.fetchWeather();
+      return Right(response);
+    } catch (error) {
+      return Left(ServerFailure(''));
+    }
   }
 }

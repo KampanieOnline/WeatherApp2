@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/forecast/data/models/weather.dart';
+import 'package:weather_app/forecast/data/models/weather_data.dart';
 
 class WeatherStateWidget extends StatelessWidget {
   const WeatherStateWidget({
@@ -7,14 +7,14 @@ class WeatherStateWidget extends StatelessWidget {
     required this.weather
   }) : super(key: key);
 
-  final Weather weather;
+  final WeatherData weather;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          weather.temp,
+          weather.main.temp.toString(),
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w700,
@@ -22,7 +22,7 @@ class WeatherStateWidget extends StatelessWidget {
           ),
         ),
         Text(
-          weather.state,
+          weather.state.description,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w400,
@@ -30,7 +30,7 @@ class WeatherStateWidget extends StatelessWidget {
           ),
         ),
         Text(
-          weather.day,
+          weather.main.humidity.toString(),
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w200,
